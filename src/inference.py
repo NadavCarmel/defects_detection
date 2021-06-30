@@ -58,8 +58,8 @@ class Inference:
 
             prediction_mask = P_defects > 0.5
 
-            aligned_images['P_defects'] = P_defects
-            aligned_images['prediction_mask'] = prediction_mask
+            aligned_images[case]['P_defects'] = P_defects
+            aligned_images[case]['prediction_mask'] = prediction_mask
 
             return aligned_images
 
@@ -78,17 +78,10 @@ class Inference:
         aligned_images = self.calc_inspected_to_reference_diff(aligned_images)  # add the inspected-to-reference err image
         aligned_images = self.predict(aligned_images=aligned_images, model=model)
         self.visualize(aligned_images)
+        print('done execution')
 
 
-
-
-
-
-
-
-
-
-
-inf = Inference()
-inf.align_image()
+if __name__ == '__main__':
+    inf = Inference()
+    inf.run_all()
 
