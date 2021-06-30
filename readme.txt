@@ -1,0 +1,17 @@
+This python project is designed to detect defects in images.
+input: (inspected, reference) images pair
+output: binary image ('prediction_mask') of the inspected image
+
+To execute the code:
+1. configure the interpreter to ./defects_detection_env/bin/python, or validate that the interpreter has all the dependencies from ./requirements.txt (there are only very few dependencies).
+2. execute the alignment step by running ./src/alignment_main.py
+   there will be 3 algorithmic options to choose from (at the 'imports' rows),so select the desired one and comment the others.
+   the alignment is of the reference image (we want to stay at the inspected image coordinate system).
+   aligned images will be saved as a dictionary to ./results/aligned_images.pkl, and will be used in later steps.
+3. calculate the difference array ('err') between each pair (inspected, shifted_reference) by running ./src/estimate_defects_model.py.
+   this matrix will be used to locate the defects.
+   the code estimates the mean and variance of the defected pixels, and of the normal pixels, and averages that over all images pairs.
+   it saves those statistics to ./results/model.pkl.
+4. for predictions, run ./src/inference.py to predict the defects in the images
+
+
