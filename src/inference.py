@@ -68,8 +68,8 @@ class Inference:
             cv2.imshow('shifted_reference_image', aligned_images[case]['shifted_reference_image'])
             cv2.imshow('inspected', aligned_images[case]['inspected'])
             cv2.imshow('err', aligned_images[case]['err'])
-            cv2.imshow('P_defects', aligned_images['P_defects'])
-            cv2.imshow('prediction_mask', aligned_images['prediction_mask'])
+            cv2.imshow('P_defects', aligned_images[case]['P_defects'])
+            cv2.imshow('prediction_mask', aligned_images[case]['prediction_mask'])
             cv2.waitKey()
 
     def run_all(self):
