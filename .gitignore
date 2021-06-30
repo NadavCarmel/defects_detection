@@ -2,6 +2,9 @@ defects_detection_env
 data/MNIST_for_debug
 results/aligned_images.pkl
 results/model.pkl
+notebooks/.ipynb_checkpoints
+src/__pycache__
+
 
 
 
