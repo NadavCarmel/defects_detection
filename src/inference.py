@@ -60,7 +60,7 @@ class Inference:
             prediction_mask = P_defects > 0.5
 
             aligned_images[case]['P_defects'] = P_defects
-            aligned_images[case]['prediction_mask'] = np.array(prediction_mask, dtype=np.uint8)
+            aligned_images[case]['prediction_mask'] = np.array(prediction_mask * 255, dtype=np.uint8)
 
         return aligned_images
 
@@ -71,7 +71,7 @@ class Inference:
             cv2.imshow('err', aligned_images[case]['err'])
             cv2.imshow('P_defects', aligned_images[case]['P_defects'])
             cv2.imshow('prediction_mask', aligned_images[case]['prediction_mask'])
-            cv2.waitKey()
+            cv2.waitKey(delay=10000)
 
     def run_all(self):
         model = self.load_model()
