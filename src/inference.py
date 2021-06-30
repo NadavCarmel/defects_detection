@@ -85,5 +85,5 @@ class Inference:
 
 if __name__ == '__main__':
     inf = Inference()
-    inf.run_all()
+    aligned_images = inf.run_all()
 
