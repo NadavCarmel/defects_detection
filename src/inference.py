@@ -22,11 +22,23 @@ class Inference:
         aa = AlignAlgo()
         aligned_images = aa.run_all(images=images)
 
-        for i, case in enumerate(images):
+        return aligned_images
+
+    def calc_inspected_to_reference_diff(self, aligned_images):
+        for i, case in enumerate(aligned_images):
             inspected = aligned_images[case]['inspected']
             shifted_reference_image = aligned_images[case]['shifted_reference_image']
-            err = inspected - shifted_reference_image
+            err = inspected - shifted_reference_image  # our diff array - will be used for the defects detection
+            aligned_images[case]['err'] = err  # add 'err' per each case to 'aligned_images'
 
+            # visualize images:
+            import cv2
+            cv2.imshow('inspected', inspected)
+            cv2.imshow('shifted_reference_image', shifted_reference_image)
+            cv2.imshow('err', err)
+            cv2.waitKey()
+
+        return aligned_images
 
 
 inf = Inference()

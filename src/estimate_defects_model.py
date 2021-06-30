@@ -32,7 +32,7 @@ class EstimateDefectsStats:
 
         return aligned_images, labels
 
-    def calc_err_stats(self, aligned_images, labels):
+    def calc_inspected_to_reference_diff_stats(self, aligned_images, labels):
         # The running-means of the error statistics.
         # These are the only 4 'learnable' params in this task.
         running_mean_defects_stats = RunningMeanStats()
@@ -43,11 +43,13 @@ class EstimateDefectsStats:
             shifted_reference_image = aligned_images[case]['shifted_reference_image']
             err = inspected - shifted_reference_image  # our diff array - will be used for the defects detection
 
-            # import cv2
-            # cv2.imshow('inspected', inspected)
-            # cv2.imshow('shifted_reference_image', shifted_reference_image)
-            # cv2.imshow('err', err)
-            # cv2.waitKey()
+            # visualize images:
+            import cv2
+            cv2.imshow('inspected', inspected)
+            cv2.imshow('shifted_reference_image', shifted_reference_image)
+            cv2.imshow('err', err)
+            cv2.waitKey(delay=1000)
+            cv2.destroyAllWindows()
 
             defects_mask = np.zeros_like(err, dtype=bool)
             for defect_idx in labels[case]:
@@ -65,7 +67,8 @@ class EstimateDefectsStats:
 
     def run_all(self):
         aligned_images, labels = self.load_data()
-        model = self.calc_err_stats(aligned_images=aligned_images, labels=labels)
+        model = self.calc_inspected_to_reference_diff_stats(aligned_images=aligned_images,
+                                                            labels=labels)
 
         # save model:
         with open('../results/model.pkl', 'wb') as f:
