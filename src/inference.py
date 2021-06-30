@@ -71,15 +71,16 @@ class Inference:
             cv2.imshow('err', aligned_images[case]['err'])
             cv2.imshow('P_defects', aligned_images[case]['P_defects'])
             cv2.imshow('prediction_mask', aligned_images[case]['prediction_mask'])
-            cv2.waitKey(delay=10000)
+            cv2.waitKey(delay=1000)
 
     def run_all(self):
         model = self.load_model()
         aligned_images = self.align_images()  # load the images and apply the alignment algo
         aligned_images = self.calc_inspected_to_reference_diff(aligned_images)  # add the inspected-to-reference err image
         aligned_images = self.predict(aligned_images=aligned_images, model=model)
-        self.visualize(aligned_images)
+        # self.visualize(aligned_images)
         print('done execution')
+        return aligned_images
 
 
 if __name__ == '__main__':
