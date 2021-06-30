@@ -32,7 +32,7 @@ def load_images_pairs() -> Dict[str, Dict[str, np.array]]:
                 msg += ' => do RGB to Gray'
                 # no channels information => convert to grayscale
                 images[case][img_type] = cv2.cvtColor(images[case][img_type], cv2.COLOR_BGR2GRAY)
-
+            print(msg)
     return images
 
 
