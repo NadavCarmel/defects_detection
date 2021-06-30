@@ -44,7 +44,8 @@ class Inference:
     @staticmethod
     def calc_prob(X, mu, sigma):
         Z = (X - mu) / sigma
-        P = 1 / (2 * np.pi * sigma) * np.exp(-0.5 * (Z ** 2))  # todo: check later
+        # P = 1 / (2 * np.pi * sigma) * np.exp(-0.5 * (Z ** 2))  # todo: check later
+        P = np.exp(-0.5 * (Z ** 2))
         return P
 
     def predict(self, aligned_images, model):
@@ -59,7 +60,7 @@ class Inference:
             prediction_mask = P_defects > 0.5
 
             aligned_images[case]['P_defects'] = P_defects
-            aligned_images[case]['prediction_mask'] = prediction_mask
+            aligned_images[case]['prediction_mask'] = np.array(prediction_mask, dtype=np.uint8)
 
         return aligned_images
 
