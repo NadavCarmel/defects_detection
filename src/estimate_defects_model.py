@@ -41,7 +41,7 @@ class EstimateDefectsStats:
         for i, case in enumerate(labels):
             inspected = aligned_images[case]['inspected']
             shifted_reference_image = aligned_images[case]['shifted_reference_image']
-            err = inspected - shifted_reference_image
+            err = inspected - shifted_reference_image  # our diff array - will be used for the defects detection
 
             # import cv2
             # cv2.imshow('inspected', inspected)
