@@ -24,7 +24,7 @@ class AlignImagesCommon:
     def run_all(self, images):
 
         for case in images:
-            print(f'\nstart working on {case} alignment...')
+            print(f'\nworking on {case} alignment...')
             pair = images[case]
             shifted_reference_image = self.return_aligned_reference_image(inspected=pair['inspected'],
                                                                           reference=pair['reference'])

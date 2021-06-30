@@ -34,6 +34,7 @@ class Inference:
 
     @staticmethod
     def calc_inspected_to_reference_diff(aligned_images):
+        print('\ncomputes inspected-to-reference diff images')
         for i, case in enumerate(aligned_images):
             inspected = aligned_images[case]['inspected']
             shifted_reference_image = aligned_images[case]['shifted_reference_image']
@@ -49,7 +50,7 @@ class Inference:
         return P
 
     def predict(self, aligned_images, model):
-
+        print('\npredicting the defects maps')
         for case in aligned_images:
             err = aligned_images[case]['err']
 
@@ -59,7 +60,7 @@ class Inference:
 
             prediction_mask = P_defects > 0.5
 
-            aligned_images[case]['P_defects'] = P_defects
+            aligned_images[case]['P_defects'] = P_defects  # probability for defect (per pixel)
             aligned_images[case]['prediction_mask'] = np.array(prediction_mask * 255, dtype=np.uint8)
 
         return aligned_images
@@ -79,7 +80,7 @@ class Inference:
         aligned_images = self.calc_inspected_to_reference_diff(aligned_images)  # add the inspected-to-reference err image
         aligned_images = self.predict(aligned_images=aligned_images, model=model)
         # self.visualize(aligned_images)
-        print('done execution')
+        print('\ndone execution')
         return aligned_images
 
 

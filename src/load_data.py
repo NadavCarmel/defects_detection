@@ -27,8 +27,9 @@ def load_images_pairs() -> Dict[str, Dict[str, np.array]]:
             # compress channels when no 'real' RGB exists (I validated no image has RGB)
             channels_var = images[case][img_type].var(axis=2)
             max_var = np.max(channels_var)
-            print(f'{case} {img_type} max_var: {max_var}')
+            msg = f'{case} {img_type} max_var: {max_var}'
             if max_var == 0:
+                msg += ' => do RGB to Gray'
                 # no channels information => convert to grayscale
                 images[case][img_type] = cv2.cvtColor(images[case][img_type], cv2.COLOR_BGR2GRAY)
 
