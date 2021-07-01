@@ -44,13 +44,13 @@ class EstimateDefectsStats:
             shifted_reference_image = aligned_images[case]['shifted_reference_image']
             err = inspected - shifted_reference_image  # our diff array - will be used for the defects detection
 
-            # visualize images:
-            import cv2
-            cv2.imshow('inspected', inspected)
-            cv2.imshow('shifted_reference_image', shifted_reference_image)
-            cv2.imshow('err', err)
-            cv2.waitKey(delay=1000)
-            cv2.destroyAllWindows()
+            # # visualize images:
+            # import cv2
+            # cv2.imshow('inspected', inspected)
+            # cv2.imshow('shifted_reference_image', shifted_reference_image)
+            # cv2.imshow('err', err)
+            # cv2.waitKey(delay=1000)
+            # cv2.destroyAllWindows()
 
             defects_mask = np.zeros_like(err, dtype=bool)
             for defect_idx in labels[case]:
@@ -66,7 +66,7 @@ class EstimateDefectsStats:
 
         return model
 
-    def run_all(self):
+    def run_all(self) -> Dict[str, float]:
         aligned_images, labels = self.load_data()
         model = self.calc_inspected_to_reference_diff_stats(aligned_images=aligned_images,
                                                             labels=labels)
