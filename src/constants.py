@@ -1,1 +1,1 @@
-IMAGES_PATH = '../data/imagess/'
+IMAGES_PATH = '../data/images/'
