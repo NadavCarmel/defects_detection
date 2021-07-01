@@ -1,3 +1,4 @@
+from typing import Dict
 import pickle
 import numpy as np
 from load_data import load_labels
@@ -10,7 +11,7 @@ class RunningMeanStats:
         self.running_mean_sigma = 0
         self.counter = 0
 
-    def update_mean_stats(self, x):
+    def update_mean_stats(self, x: np.array):
         self.running_mean_mu = self.running_mean_mu * self.counter + np.mean(x) * len(x)
         self.running_mean_sigma = self.running_mean_sigma * self.counter + np.std(x) * len(x)
         self.counter += len(x)
@@ -23,7 +24,7 @@ class EstimateDefectsStats:
     @staticmethod
     def load_data():
 
-        # load images (after alignment):
+        # loads inspected and aligned reference images:
         with open('../results/aligned_images.pkl', 'rb') as f:
             aligned_images = pickle.load(f)
 
@@ -32,7 +33,7 @@ class EstimateDefectsStats:
 
         return aligned_images, labels
 
-    def calc_inspected_to_reference_diff_stats(self, aligned_images, labels):
+    def calc_inspected_to_reference_diff_stats(self, aligned_images, labels) -> Dict[str, float]:
         # The running-means of the error statistics.
         # These are the only 4 'learnable' params in this task.
         running_mean_defects_stats = RunningMeanStats()

@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List, Tuple
 import numpy as np
 import cv2
 from constants import IMAGES_PATH
@@ -36,7 +36,7 @@ def load_images_pairs() -> Dict[str, Dict[str, np.array]]:
     return images
 
 
-def load_labels():
+def load_labels() -> Dict[str, List[Tuple[int, int]]]:
     # load labels:
     labels = {
         'case1': [(149, 334),
