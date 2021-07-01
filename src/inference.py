@@ -33,7 +33,7 @@ class Inference:
         return aligned_images
 
     @staticmethod
-    def calc_inspected_to_reference_diff(aligned_images):
+    def calc_inspected_to_reference_diff(aligned_images: Dict[str, Dict[str, np.array]]) -> Dict[str, Dict[str, np.array]]:
         print('\ncomputes inspected-to-reference diff images')
         for i, case in enumerate(aligned_images):
             inspected = aligned_images[case]['inspected']
@@ -43,13 +43,13 @@ class Inference:
         return aligned_images
 
     @staticmethod
-    def calc_prob(X, mu, sigma):
+    def calc_prob(X: np.array, mu: float, sigma: float) -> np.array:
         Z = (X - mu) / sigma
         # P = 1 / (2 * np.pi * sigma) * np.exp(-0.5 * (Z ** 2))  # todo: check later
         P = np.exp(-0.5 * (Z ** 2))
         return P
 
-    def predict(self, aligned_images, model):
+    def predict(self, aligned_images: Dict[str, Dict[str, np.array]], model: Dict[str, float]) -> Dict[str, Dict[str, np.array]]:
         print('\npredicting the defects maps')
         for case in aligned_images:
             err = aligned_images[case]['err']
@@ -65,7 +65,7 @@ class Inference:
 
         return aligned_images
 
-    def visualize(self, aligned_images):
+    def visualize(self, aligned_images: Dict[str, Dict[str, np.array]]):
         for case in aligned_images:
             cv2.imshow('shifted_reference_image', aligned_images[case]['shifted_reference_image'])
             cv2.imshow('inspected', aligned_images[case]['inspected'])
@@ -74,7 +74,7 @@ class Inference:
             cv2.imshow('prediction_mask', aligned_images[case]['prediction_mask'])
             cv2.waitKey(delay=1000)
 
-    def run_all(self):
+    def run_all(self) -> Dict[str, Dict[str, np.array]]:
         model = self.load_model()
         aligned_images = self.align_images()  # load the images and apply the alignment algo
         aligned_images = self.calc_inspected_to_reference_diff(aligned_images)  # add the inspected-to-reference err image
