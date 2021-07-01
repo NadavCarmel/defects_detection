@@ -1,7 +1,11 @@
+Abstract
+--------
 This python project is designed to detect defects in images.
 input: (inspected, reference) images pair
 output: binary image ('prediction_mask') of the inspected image
 
+Usage
+-----
 To execute the code:
 1. validate that the interpreter has all the dependencies from ./requirements.txt (it is a very slim file).
 2. execute the alignment step by running ./src/alignment_main.py
