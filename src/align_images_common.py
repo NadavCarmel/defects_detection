@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Tuple, Dict
 import numpy as np
 import cv2
 from load_data import load_images_pairs
@@ -21,7 +21,7 @@ class AlignImagesCommon:
                      dtype=float)
         return cv2.warpAffine(image, M, (image.shape[1], image.shape[0]))
 
-    def run_all(self, images):
+    def run_all(self, images) -> Dict[str, Dict[str, np.array]]:
 
         for case in images:
             print(f'\nworking on {case} alignment...')

@@ -3,7 +3,7 @@
 # calc err: inspected - aligned_reference
 # apply the model: p_defect(err[i, j]) / (p_defect(err[i, j]) + p_non_defect(err[i, j]))
 # show probability map + binary map
-
+from typing import Dict
 import cv2
 import numpy as np
 import pickle
@@ -17,13 +17,13 @@ from align_by_ECC import AlignByECC as AlignAlgo
 class Inference:
 
     @staticmethod
-    def load_model():
+    def load_model() -> Dict[str, float]:
         with open('../results/model.pkl','rb') as f:
             model = pickle.load(f)
         return model
 
     @staticmethod
-    def align_images():
+    def align_images() -> Dict[str, Dict[str, np.array]]:
         images = load_images_pairs()  # the images we want to use in test-time
 
         # compute aligned reference images per each case:
