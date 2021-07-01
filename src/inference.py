@@ -79,7 +79,7 @@ class Inference:
         aligned_images = self.align_images()  # load the images and apply the alignment algo
         aligned_images = self.calc_inspected_to_reference_diff(aligned_images)  # add the inspected-to-reference err image
         aligned_images = self.predict(aligned_images=aligned_images, model=model)
-        # self.visualize(aligned_images)
+        self.visualize(aligned_images)
         print('\ndone execution')
         return aligned_images
 

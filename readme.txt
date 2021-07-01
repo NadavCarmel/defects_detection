@@ -3,7 +3,7 @@ input: (inspected, reference) images pair
 output: binary image ('prediction_mask') of the inspected image
 
 To execute the code:
-1. configure the interpreter to ./defects_detection_env/bin/python, or validate that the interpreter has all the dependencies from ./requirements.txt.
+1. validate that the interpreter has all the dependencies from ./requirements.txt (it is a very slim file).
 2. execute the alignment step by running ./src/alignment_main.py
    there will be 3 algorithmic options to choose from (at the 'imports' rows),so select the desired one and comment the others.
    the alignment is of the reference image (we want to stay at the inspected image coordinate system).
