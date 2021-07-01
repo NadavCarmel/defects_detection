@@ -8,6 +8,11 @@ Usage
 -----
 To execute the code:
 1. validate that the interpreter has all the dependencies from ./requirements.txt (it is a very slim file).
+   or use:
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   $ pip install -r requirements.txt  # install dependencies
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
 2. execute the alignment step by running ./src/alignment_main.py
    there will be 3 algorithmic options to choose from (at the 'imports' rows),so select the desired one and comment the others.
    the alignment is of the reference image (we want to stay at the inspected image coordinate system).
