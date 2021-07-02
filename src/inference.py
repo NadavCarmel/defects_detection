@@ -65,7 +65,8 @@ class Inference:
 
         return aligned_images
 
-    def visualize(self, aligned_images: Dict[str, Dict[str, np.array]]):
+    @staticmethod
+    def visualize(aligned_images: Dict[str, Dict[str, np.array]]):
         for case in aligned_images:
             cv2.imshow('shifted_reference_image', aligned_images[case]['shifted_reference_image'])
             cv2.imshow('inspected', aligned_images[case]['inspected'])
