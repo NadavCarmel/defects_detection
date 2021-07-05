@@ -16,7 +16,7 @@ class AlignByECC(AlignImagesCommon):
         """
         this function computes the translation shifts in x and y directions of the reference w.r.t. the inspected image.
         It is based on the minimizing the Enhanced Correlation Coefficient scheme (Georgios et al.)
-        The idea is that the intensities o the images are normalized, thus the loss is insensitive to different light
+        The idea is that the intensities of the images are normalized, thus the loss is insensitive to different light
         conditions between the images.
         :param inspected: inspected image
         :param reference: reference image
